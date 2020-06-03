@@ -1,0 +1,249 @@
+@import './variables';
+* {
+    box-sizing: border-box;
+    outline: none;
+}
+
+html {
+    font-size: 13px;
+}
+
+body {
+    margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.2em;
+    background-color: #fff;
+    -webkit-font-smoothing: antialiased
+}
+
+a {
+    color: #999;
+}
+
+p {
+    line-height: 1.5em;
+}
+
+@each $colorKey,
+$color in $colors {
+    .text-#{""+$colorKey} {
+        color: $color
+    }
+    .bg-#{""+$colorKey} {
+        background-color: $color
+    }
+}
+
+@each $var in (left, center, right) {
+    .text-#{$var} {
+        text-align: $var !important;
+    }
+}
+
+$font-sizes: ( xxs:0.6154, //8px    
+xs:0.7692, //10px
+sm:0.9231, //10像素 
+md:1, //13px
+lg:1.0769, xl:1.2308);
+@each $sizeKey,
+$size in $font-sizes {
+    .fs-#{$sizeKey} {
+        font-size: $size * $base-font-size;
+    }
+}
+
+//flex
+.d-flex {
+    display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+@each $key,
+$value in $flex-jc {
+    .jc-#{$key} {
+        justify-content: $value;
+    }
+}
+
+@each $key,
+$value in $flex-self {
+    .self-#{$key} {
+        align-self: $value
+    }
+}
+
+@each $key,
+$value in $flex-ai {
+    .ai-#{$key} {
+        align-items: $value;
+    }
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+// mt-0 =>margin-top:0rem   //值就不用再写#{}
+@each $typeKey,
+$type in $spacing-types {
+    @each $directionKey,
+    $direction in $spacing-directions {
+        @each $sizeKey,
+        $size in $spacing-sizes {
+            .#{$typeKey}#{$directionKey}-#{$sizeKey} {
+                #{$type}-#{$direction}: $size* $spacing-base-size;
+            }
+        }
+    }
+}
+
+//不带方位的 m-0
+@each $typeKey,
+$type in $spacing-types {
+    @each $sizeKey,
+    $size in $spacing-sizes {
+        .#{$typeKey}-#{$sizeKey} {
+            #{$type}: $size* $spacing-base-size;
+        }
+    }
+}
+
+// mx-0 x轴 左右相等 
+@each $typeKey,
+$type in $spacing-types {
+    @each $sizeKey,
+    $size in $spacing-sizes {
+        .#{$typeKey}x-#{$sizeKey} {
+            #{$type}-left: $size* $spacing-base-size;
+            #{$type}-right: $size* $spacing-base-size;
+        }
+    }
+}
+
+// 上下相等
+@each $typeKey,
+$type in $spacing-types {
+    @each $sizeKey,
+    $size in $spacing-sizes {
+        .#{$typeKey}y-#{$sizeKey} {
+            #{$type}-top: $size* $spacing-base-size;
+            #{$type}-bottom: $size* $spacing-base-size;
+        }
+    }
+}
+
+// button
+.btn {
+    border: none;
+    border-radius: 0.1538rem;
+    font-size: map-get($map: $font-sizes, $key: 'sm')* $base-font-size; // scss里面的语法： & 表示自身
+    padding: 0.2rem 0.6rem;
+    &.btn-lg {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        i {
+            color: map-get($map: $colors, $key: 'primary');
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        background: map-get($map: $colors, $key: 'white-1');
+        border: 1px solid map-get($map: $colors, $key: 'white-2');
+        padding: 0.8rem 1rem;
+        font-size: 1rem;
+    }
+}
+
+//nav
+.nav {
+    display: flex;
+    .nav-item {
+        border-bottom: 2px solid transparent; //加透明边框就是防止和active的元素对不齐的现象
+        padding-bottom: 0.2rem;
+        &.active {
+            //加&符号，表示它本身 .nav-item
+            color: map-get($map: $colors, $key: primary);
+            border-bottom: 2px solid map-get($map: $colors, $key: primary);
+        }
+    }
+}
+
+.nav-inverse {
+    .nav-item {
+        border-bottom: 2px solid transparent; //加透明边框就是防止和active的元素对不齐的现象
+        padding-bottom: 0.2rem;
+        color: #fff;
+        &.active {
+            //加&符号，表示它本身 .nav-item
+            border-bottom: 2px solid #fff;
+            color: #fff;
+        }
+    }
+}
+
+//宽高100%
+.w-100 {
+    width: 100%;
+}
+
+.h-100 {
+    height: 100%;
+}
+
+//sprite 0 0表示左上角对齐 表示显示图片的那块区域
+.sprite {
+    background: url('../images/index.png') no-repeat 0 0;
+    background-size: 28.8462rem; //设计师按iphone7/8 来设计的尺寸375px
+    display: inline-block; //如果图片在i标签等行内标签上
+    &.sprite-news {
+        background-position: 63.546% 15.517%;
+        // background-size: 28.8462rem 35rem;
+        width: 1.7692rem;
+        height: 1.5385rem;
+    }
+    &.sprite-story {
+        background-position: 90.483% 15.614%;
+        // background-size: 28.8462rem 35rem;
+        width: 1.7692rem;
+        height: 1.5385rem;
+    }
+    &.sprite-arrow {
+        background-position: 38.577% 52.076%;
+        width: 0.7692rem;
+        height: 0.7692rem;
+    }
+}
+
+//text overflow
+.text-ellipsis {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+// borders
+@each $var in (top,
+bottom,
+right,
+left) {
+    .border-#{$var} {
+        border-#{$var}: 1px solid $border-color;
+    }
+}

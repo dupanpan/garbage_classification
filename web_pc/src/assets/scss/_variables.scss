@@ -1,0 +1,18 @@
+//定义网站的配色 当名称冲突时,用引号括起来
+$colors:( primary:#00BFA6, light-green:rgb(221, 241, 228), black-text:#343c3d, mint-green:rgb(241, 254, 244), grey-green:rgb(157, 188, 172), carrot:rgb(255, 209, 193), dark-green:rgb(102, 135, 128), light-blue:rgb(214, 228, 244), card-green:rgb(214, 238, 223), light-yellow:rgb(252, 239, 214), green-green:rgb(2, 113, 128), text-green:rgb(184, 199, 196), "purple":#6067f1, "green":#80ee85, "text-1":#343440, "blue":#4394e4, "white-1":#fcfcfc, "white-2":#eceef0, "danger":#791a15, "blue-1":#1f3695, "white":#fff, dark-1:#343440, "black":#000, dark:#222, grey:#999, grey-1:#666, light:#f9f9f9, 'light-1':#d4d9de, darkblue:#4b67af);
+//font-size  使用了px to rem  alt+z 需要去setting里面设置默认的1rem对应的px
+$base-font-size:1rem;
+$font-sizes: ( xxs:0.6154, //8px    
+xs:0.7692, //10px
+sm:0.9231, //10像素 
+md:1, //13px
+lg:1.0769, xl:1.2308);
+$flex-jc:( 'start':flex-start, end:flex-end, center:center, between:space-between, around:space-around, );
+$flex-ai:( 'start':flex-start, end:flex-end, center:center, stretch:stretch);
+$flex-self:('start':flex-start, end:flex-end, center:center, stretch:stretch);
+// spacing
+$spacing-types:(m:margin, p:padding);
+$spacing-directions:(t:top, r:right, b:bottom, l:left);
+$spacing-base-size:1rem;
+$spacing-sizes:(0:0, 1:0.25, 2:0.5, 3:1, 4:1.5, 5:3, 6:6);
+$border-color:map-get($colors, 'light-1')
